@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="https://www.beeuc.com/develop/feed.xml" rel="self" type="application/atom+xml" /><link href="https://www.beeuc.com/develop/" rel="alternate" type="text/html" /><updated>2019-05-25T00:25:29+08:00</updated><id>https://www.beeuc.com/develop/feed.xml</id><title type="html">BEEUC</title><subtitle>Development Blog</subtitle><author><name>beeuc</name></author><entry><title type="html">Fenced Code Block Syntax Highlight with Jekyll</title><link href="https://www.beeuc.com/develop/jekyll/2019/05/11/Fenced-Code-Block-Syntax-Highlight-with-Jekyll.html" rel="alternate" type="text/html" title="Fenced Code Block Syntax Highlight with Jekyll" /><published>2019-05-11T00:00:00+08:00</published><updated>2019-05-11T00:00:00+08:00</updated><id>https://www.beeuc.com/develop/jekyll/2019/05/11/Fenced-Code-Block-Syntax-Highlight-with-Jekyll</id><content type="html" xml:base="https://www.beeuc.com/develop/jekyll/2019/05/11/Fenced-Code-Block-Syntax-Highlight-with-Jekyll.html">&lt;h1 id=&quot;fenced-code-block-syntax-highlight-with-jekyll&quot;&gt;Fenced Code Block Syntax Highlight with Jekyll&lt;/h1&gt;
+
+&lt;p&gt;This article recorded how we configured jekyll with kramdown and rouge for fenced code block syntax highlight.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to&quot;&gt;How to&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;install some gem packages
+    &lt;ul&gt;
+      &lt;li&gt;sudo gem install jekyll&lt;/li&gt;
+      &lt;li&gt;sudo gem install kramdown-syntax-coderay&lt;/li&gt;
+      &lt;li&gt;sudo gem install rouge&lt;/li&gt;
+      &lt;li&gt;sudo gem install coderay&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;generate a rouge css file
+    &lt;ul&gt;
+      &lt;li&gt;rougify style github &amp;gt; assets/rouge.css&lt;/li&gt;
+      &lt;li&gt;include the rouge.css in template file, e.g., head.html&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- in head.html --&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/develop/assets/rouge.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;add the following block in the generated rouge.css file for a better padding&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;pre&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.highlight&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;nl&quot;&gt;padding-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;padding-right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.5em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;padding-bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;10px&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;padding-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0.5em&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;_config.yml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;highlighter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rouge&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;markdown&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;kramdown&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;kramdown&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GFM&lt;/span&gt; 
+    &lt;span class=&quot;na&quot;&gt;enable_coderay&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;syntax_highlighter&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;rouge&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;syntax_highlighter_opts&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; 
+        &lt;span class=&quot;na&quot;&gt;wrap&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;div&lt;/span&gt; 
+        &lt;span class=&quot;na&quot;&gt;line_numbers&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/markdown/&quot;&gt;https://jekyllrb.com/docs/configuration/markdown/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://kramdown.gettalong.org/options.html#option-syntax-highlighter&quot;&gt;https://kramdown.gettalong.org/options.html#option-syntax-highlighter&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jneen/rouge&quot;&gt;https://github.com/jneen/rouge&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cloud.tencent.com/developer/article/1341156&quot;&gt;https://cloud.tencent.com/developer/article/1341156&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>beeuc</name></author><category term="Jekyll" /><summary type="html">Fenced Code Block Syntax Highlight with Jekyll</summary></entry><entry><title type="html">iOS App 发布准备</title><link href="https://www.beeuc.com/develop/ios/2019/05/11/iOS-App-Dist-Preparation.html" rel="alternate" type="text/html" title="iOS App 发布准备" /><published>2019-05-11T00:00:00+08:00</published><updated>2019-05-11T00:00:00+08:00</updated><id>https://www.beeuc.com/develop/ios/2019/05/11/iOS-App-Dist-Preparation</id><content type="html" xml:base="https://www.beeuc.com/develop/ios/2019/05/11/iOS-App-Dist-Preparation.html">&lt;h1 id=&quot;ios-app-发布准备&quot;&gt;iOS App 发布准备&lt;/h1&gt;
+
+&lt;p&gt;本文简要介绍发布 iOS App 需要做的准备工作&lt;/p&gt;
+
+&lt;h2 id=&quot;申请-apple-开发者账号&quot;&gt;申请 Apple 开发者账号&lt;/h2&gt;
+
+&lt;p&gt;如果 App 需要在 App Store 上发布，那么建议申请 “以组织身份注册” 的类型。&lt;/p&gt;
+
+&lt;p&gt;申请地址 &lt;a href=&quot;https://developer.apple.com/programs/&quot;&gt;https://developer.apple.com/programs/&lt;/a&gt;，申请网站上有详细的流程介绍。&lt;/p&gt;
+
+&lt;p&gt;开发者账号申请好之后，才可以进行后续步骤。&lt;/p&gt;
+
+&lt;h2 id=&quot;常用网站&quot;&gt;常用网站&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Apple 开发者网站 - &lt;a href=&quot;https://developer.apple.com&quot;&gt;https://developer.apple.com&lt;/a&gt;， 管理 App ID，签名证书，Provisioning Profile 等&lt;/li&gt;
+  &lt;li&gt;App Store Connect 网站 - &lt;a href=&quot;https://appstoreconnect.apple.com&quot;&gt;https://appstoreconnect.apple.com&lt;/a&gt;，管理 App，Test Flight 测试版本，用户等&lt;/li&gt;
+  &lt;li&gt;Apple ID 管理网站 - &lt;a href=&quot;https://appleid.apple.com/cn&quot;&gt;https://appleid.apple.com/cn&lt;/a&gt;，管理开发者的 Apple ID，需要在里边创建 App specific password，在上传 ipa 文件的命令中需要使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;创建-app-id&quot;&gt;创建 App ID&lt;/h2&gt;
+
+&lt;p&gt;在 &lt;a href=&quot;https://developer.apple.com&quot;&gt;https://developer.apple.com&lt;/a&gt; 网站为 App 创建一个 App ID，创建 App ID 是为了创建 Bundle ID （PRODUCT_BUNDLE_IDENTIFIER）。如果在 Xcode 工程中使用 xcconfig，则 release build 的 xcconfig 中可以设置 &lt;code class=&quot;highlighter-rouge&quot;&gt;PRODUCT_BUNDLE_IDENTIFIER = &quot;创建 App ID 时指定的 Bundle ID&quot;。&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;创建-ios-distribution-证书&quot;&gt;创建 iOS Distribution 证书&lt;/h2&gt;
+
+&lt;p&gt;这个证书用于 Xcode 编译过程中为生成的 ipa 文件签名，如果还没有创建该证书，则可以使用 Xcode 创建该证书。创建的方法是进入到 Xcode &amp;gt; Preferences &amp;gt; Accounts &amp;gt; Manage Certificates…, 点 + 号，选择 iOS Distribution。&lt;/p&gt;
+
+&lt;p&gt;创建出来后，可以在主机的 Keychain Access 应用中将该证书导出为一个 .p12 文件备用，一般需要将这个证书再安装到编译服务器上去。&lt;/p&gt;
+
+&lt;h2 id=&quot;创建-ios-provisioning-profiles-distribution&quot;&gt;创建 iOS Provisioning Profiles (Distribution)&lt;/h2&gt;
+
+&lt;p&gt;在 &lt;a href=&quot;https://developer.apple.com&quot;&gt;https://developer.apple.com&lt;/a&gt; 网站为 App 创建一个 iOS Provisioning Profiles (Distribution)，这个文件也是在 Xcode 编译时使用。创建时，需要选择已经创建好的 App ID，以及 iOS Distribution 证书。创建好的 iOS Provisioning Profiles (Distribution) 文件可以下载下来，安装到编译服务器上。&lt;/p&gt;
+
+&lt;h2 id=&quot;配置-release-xcconfig-文件&quot;&gt;配置 release xcconfig 文件&lt;/h2&gt;
+
+&lt;p&gt;建议在工程中使用 release xcconfig 文件，可以在该文件中配置好以下几项配置。在工程的 Build Settings 中将相应的属性设置为对应的参数。如将 Provisioning Profile &amp;gt; Release 设置为 &lt;code class=&quot;highlighter-rouge&quot;&gt;${PROVISIONING_PROFILE_SPECIFIER}&lt;/code&gt;，将 Packaging &amp;gt; Product Bundle Identifier &amp;gt; Release 设置为  &lt;code class=&quot;highlighter-rouge&quot;&gt;${PRODUCT_BUNDLE_IDENTIFIER}&lt;/code&gt; 以此类推。&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PRODUCT_BUNDLE_IDENTIFIER &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 创建 App ID 时指定的 Bundle ID
+PRODUCT_NAME &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 应用名字
+DEVELOPMENT_TEAM &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 开发者 Team ID 号码，在 developer.apple.com 查看账号信息可以查到  
+CODE_SIGN_IDENTITY &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 签名证书 ID，查看签名证书属性可以查到 
+PROVISIONING_PROFILE_SPECIFIER &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; iOS Provisioning Profiles &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Distribution&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 的名字
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;在-app-store-connect-创建应用&quot;&gt;在 App Store Connect 创建应用&lt;/h2&gt;
+
+&lt;p&gt;在 App Store Connect 网站中创建一个新的 iOS App，创建应用时选择之前创建的 Bundle ID。只有创建 App 后才可以上传改应用的 ipa 文件。&lt;/p&gt;
+
+&lt;h2 id=&quot;编译-release-版本应用-ipa-文件并将其上传到-app-store-connect&quot;&gt;编译 Release 版本应用 ipa 文件并将其上传到 App Store Connect&lt;/h2&gt;
+
+&lt;p&gt;建议在编译服务器通过命令行方式编译用于发布的 ipa 文件，然后通过命令行进行上传。可以使用 Jenkins 等 CI/CD 工具，将这一过程自动化。编译命令和上传命令示例如下&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;xcodebuild &lt;span class=&quot;nt&quot;&gt;-target&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;TARGET&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-configuration&lt;/span&gt; Release &lt;span class=&quot;nt&quot;&gt;-project&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PROJECT_FILE&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+xcrun altool &lt;span class=&quot;nt&quot;&gt;--upload-app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; ./release/&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;RELEASE_IPA_FILE&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;USER_APPLE_ID&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;APP_SPECIFIC_PASSWORD&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;苹果现在要求 altool 命令中不能再使用用户的登录密码，而需要使用 App Specific Password，这个密码需要在 Apple ID 管理网站中创建&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;通过-test-flight-安装-app-测试&quot;&gt;通过 Test Flight 安装 App 测试&lt;/h2&gt;
+
+&lt;p&gt;Test Flight 是苹果推荐的 App 发布前的测试和 Beta 手段， ipa 上传到 App Store Connect 后，测试人员可以通过 Test Flight 安装新上传的 App，进行必要的测试。有关 Test Flight 的使用方法可以参考 &lt;a href=&quot;https://developer.apple.com/testflight/&quot;&gt;https://developer.apple.com/testflight/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;提交审核&quot;&gt;提交审核&lt;/h2&gt;
+
+&lt;p&gt;新版本应用通过测试后，可以将其提交审核。在 &lt;a href=&quot;https://appstoreconnect.apple.com&quot;&gt;https://appstoreconnect.apple.com&lt;/a&gt; 网站上提供必要的信息，然后提交审核即可。苹果一般几天后开始审核，如果审核成功，则 App 可以发布到 App Store。如果审核失败，苹果会提供反馈信息，说明审核失败的原因，需要根据反馈进行必要的修改或者同审核人员进行必要的沟通。可以参考苹果文档 &lt;a href=&quot;https://help.apple.com/app-store-connect/#/dev34e9bbb5a&quot;&gt;https://help.apple.com/app-store-connect/#/dev34e9bbb5a&lt;/a&gt; 查看更详细的说明。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;苹果现在要求所有应用需要提供《隐私协议》链接，需要将准备好的《隐私协议》放到公司网站后，将地址链接填入 App 审核申请中对应的空格。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;另外，有时苹果要求提供 App 使用的 Demo 视频，建议录制一个 Demo 视频，在申请表中提供视频的地址链接。&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>beeuc</name></author><category term="iOS" /><summary type="html">iOS App 发布准备</summary></entry><entry><title type="html">How to upload macos App for notarization by command-line tools</title><link href="https://www.beeuc.com/develop/app-development/2019/04/12/notarizing-mac-app.html" rel="alternate" type="text/html" title="How to upload macos App for notarization by command-line tools" /><published>2019-04-12T00:00:00+08:00</published><updated>2019-04-12T00:00:00+08:00</updated><id>https://www.beeuc.com/develop/app-development/2019/04/12/notarizing-mac-app</id><content type="html" xml:base="https://www.beeuc.com/develop/app-development/2019/04/12/notarizing-mac-app.html">&lt;h1 id=&quot;how-to-upload-macos-app-for-notarization-by-command-line-tools&quot;&gt;How to upload macos App for notarization by command-line tools&lt;/h1&gt;
+
+&lt;p&gt;As required by Apple below recently, macos App developers need to upload the Apps they developed to Apple for a notarization before distributing the Apps.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;With the public release of macOS 10.14.5, we require that all developers creating a Developer ID certificate for the first time notarize their apps, and that all new and updated kernel extensions be notarized as well. This will help give users more confidence that the software they download and run, no matter where they get it from, is not malware by showing a more streamlined Gatekeeper interface. In addition, we’ve made the following enhancements to the notarization process.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Refer to &lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution&quot;&gt;Notarizing Your App Before Distribution&lt;/a&gt; for more background.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to&quot;&gt;How to&lt;/h2&gt;
+
+&lt;p&gt;To integrate the notarization steps into the CI system, we added the following steps in our automation build scripts.&lt;/p&gt;
+
+&lt;h3 id=&quot;upload-the-app-archive&quot;&gt;Upload the App archive&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;APP_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;./&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PRODUCT_NAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.app&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;ZIP_PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;./&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PRODUCT_NAME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.zip&quot;&lt;/span&gt;
+
+/usr/bin/ditto &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--keepParent&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$APP_PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ZIP_PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+xcrun altool &lt;span class=&quot;nt&quot;&gt;--notarize-app&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--primary-bundle-id&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;BUNDLE_IDENTIFIER&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;APP_ACCOUNT&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;APP_SPEC_PASSWD&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--asc-provider&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DEVELOPMENT_TEAM&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--file&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;ZIP_PATH&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;--asc-provider&lt;/code&gt; parameter is needed for us as our App management account is being used by more than one orgnizations. Otherwise the &lt;code class=&quot;highlighter-rouge&quot;&gt;--notarize-app&lt;/code&gt; command would fail with the following error prompt message.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Error: Your Apple ID account is attached to other iTunes providers. You will need to specify which provider you intend to submit content to by using the -itc_provider command. Please contact us if you have questions or need help. (1627)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;However, we didn’t find how -itc_provider can be specified, but found the —asc-provider parameter. Maybe the prompt itself is a mistake.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Apple’s official documentation states that the notarization could complete in about 1 hour. We found it usually complete in several minutes and we would receive the email notification shortly after we have had the archive uploaded.&lt;/p&gt;
+
+&lt;h3 id=&quot;upload-the-installer-package&quot;&gt;Upload the installer package&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;xcrun altool --notarize-app --primary-bundle-id ${BUNDLE_IDENTIFIER} -u ${APP_ACCOUNT} -p ${APP_SPEC_PASSWD} --asc-provider &quot;${DEVELOPMENT_TEAM}&quot; --file ${WORKSPACE}/${RELEASE_PKG_NAME}&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Be sure to use –timestamp paramether w/ the productsign command when signing the installer package file. Otherwise the notarization could fail due to the issue that the signature doesn’t contain a valid timestamp.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Refer to &lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/resolving_common_notarization_issues&quot;&gt;Resolving common notarization issues&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;check-the-notarization-result&quot;&gt;Check the notarization result&lt;/h3&gt;
+
+&lt;p&gt;Once received the email notification of the completion of the notarization, you’d better check the notarization log  even it’s a successful result as suggested by Apple.&lt;/p&gt;
+
+&lt;p&gt;To obtain detailed information about a particular submission, use &lt;code class=&quot;highlighter-rouge&quot;&gt;altool&lt;/code&gt; along with the &lt;code class=&quot;highlighter-rouge&quot;&gt;notarization-info&lt;/code&gt; flag and the UUID for the submission. The UUID is printed when the &lt;code class=&quot;highlighter-rouge&quot;&gt;altool —notarize-app&lt;/code&gt; command finished. For more details about how to check the status and log, refer to &lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732&quot;&gt;Customizing the notarization workflow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;staple-your-app-and-the-installer-package&quot;&gt;Staple your App and the installer package&lt;/h3&gt;
+
+&lt;p&gt;Notarization produces a ticket that tells Gatekeeper that your app is notarized. After notarization completes successfully, the next time any user attempts to run your app on macOS 10.14 or later, Gatekeeper finds the ticket online. This includes users who downloaded your app before notarization. You should also attach the ticket to your software using the &lt;code class=&quot;highlighter-rouge&quot;&gt;stapler&lt;/code&gt; tool, so that future distributions include the ticket. This ensures that Gatekeeper can find the ticket even when a network connection isn’t available.&lt;/p&gt;
+
+&lt;p&gt;For the details about how to staple the files, refer to &lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732&quot;&gt;Customizing the notarization workflow&lt;/a&gt; too.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution&quot;&gt;Notarizing Your App Before Distribution&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/resolving_common_notarization_issues&quot;&gt;Resolving common notarization issues&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution/customizing_the_notarization_workflow#3087732&quot;&gt;Customizing the notarization workflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>beeuc</name></author><category term="App-development" /><summary type="html">How to upload macos App for notarization by command-line tools</summary></entry></feed>

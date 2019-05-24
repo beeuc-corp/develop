@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Fenced Code Block Syntax Highlight with Jekyll - BEEUC
+    
+  </title>
+
+  <meta name="description" content="Fenced Code Block Syntax Highlight with Jekyll">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/develop/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/develop/assets/vendor/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="/develop/assets/main.css">
+  <link rel="stylesheet" href="/develop/assets/rouge.css">
+  <link rel="canonical" href="https://www.beeuc.com/develop/jekyll/2019/05/11/Fenced-Code-Block-Syntax-Highlight-with-Jekyll.html">
+  <link rel="alternate" type="application/rss+xml" title="BEEUC" href="/develop/feed.xml">
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1b1822321e8ea9334798f69c0511edea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+
+  <body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/develop/">BEEUC</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Fenced Code Block Syntax Highlight with Jekyll</h1>
+            
+            <h2 class="subheading">This article recorded how we configured jekyll with kramdown and rouge for fenced code block syntax highlight</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">beeuc</a>
+              on May 11, 2019 &middot; <span class="reading-time" title="Estimated read time">
+  
+   205 1 min  read </span>
+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <h1 id="fenced-code-block-syntax-highlight-with-jekyll">Fenced Code Block Syntax Highlight with Jekyll</h1>
+
+<p>This article recorded how we configured jekyll with kramdown and rouge for fenced code block syntax highlight.</p>
+
+<h2 id="how-to">How to</h2>
+
+<ul>
+  <li>install some gem packages
+    <ul>
+      <li>sudo gem install jekyll</li>
+      <li>sudo gem install kramdown-syntax-coderay</li>
+      <li>sudo gem install rouge</li>
+      <li>sudo gem install coderay</li>
+    </ul>
+  </li>
+  <li>generate a rouge css file
+    <ul>
+      <li>rougify style github &gt; assets/rouge.css</li>
+      <li>include the rouge.css in template file, e.g., head.html</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- in head.html --&gt;</span>
+
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"/develop/assets/rouge.css"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+<ul>
+  <li>add the following block in the generated rouge.css file for a better padding</li>
+</ul>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">pre</span><span class="nc">.highlight</span> <span class="p">{</span>
+
+  <span class="nl">padding-top</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">padding-right</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+  <span class="nl">padding-bottom</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">padding-left</span><span class="p">:</span> <span class="m">0.5em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>_config.yml</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">highlighter</span><span class="pi">:</span> <span class="s">rouge</span>
+<span class="na">markdown</span><span class="pi">:</span> <span class="s">kramdown</span>
+<span class="na">kramdown</span><span class="pi">:</span>
+    <span class="na">input</span><span class="pi">:</span> <span class="s">GFM</span> 
+    <span class="na">enable_coderay</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">syntax_highlighter</span><span class="pi">:</span> <span class="s">rouge</span>
+    <span class="na">syntax_highlighter_opts</span><span class="pi">:</span> 
+        <span class="na">wrap</span><span class="pi">:</span> <span class="s">div</span> 
+        <span class="na">line_numbers</span><span class="pi">:</span> <span class="no">false</span>
+</code></pre></div></div>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://jekyllrb.com/docs/configuration/markdown/">https://jekyllrb.com/docs/configuration/markdown/</a></li>
+  <li><a href="https://kramdown.gettalong.org/options.html#option-syntax-highlighter">https://kramdown.gettalong.org/options.html#option-syntax-highlighter</a></li>
+  <li><a href="https://github.com/jneen/rouge">https://github.com/jneen/rouge</a></li>
+  <li><a href="https://cloud.tencent.com/developer/article/1341156">https://cloud.tencent.com/developer/article/1341156</a></li>
+</ul>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/develop/app-development/2019/04/12/notarizing-mac-app.html"
+            data-toggle="tooltip" data-placement="top" title="How to upload macos App for notarization by command-line tools">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/develop/ios/2019/05/11/iOS-App-Dist-Preparation.html"
+            data-toggle="tooltip" data-placement="top" title="iOS App 发布准备">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/beeuc-corp">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto: info@beeuc.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-paper-plane fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; beeuc 2019</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/develop/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/develop/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/develop/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/develop/assets/scripts.js"></script>
+
+
+
+
+  </body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    iOS App 发布准备 - BEEUC
+    
+  </title>
+
+  <meta name="description" content="iOS App 发布准备">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/develop/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/develop/assets/vendor/fontawesome-free/css/all.min.css">
+
+  <link rel="stylesheet" href="/develop/assets/main.css">
+  <link rel="stylesheet" href="/develop/assets/rouge.css">
+  <link rel="canonical" href="https://www.beeuc.com/develop/ios/2019/05/11/iOS-App-Dist-Preparation.html">
+  <link rel="alternate" type="application/rss+xml" title="BEEUC" href="/develop/feed.xml">
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1b1822321e8ea9334798f69c0511edea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+
+  <body>
+
+    <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/develop/">BEEUC</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/develop/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <!-- Page Header -->
+
+  <header class="masthead">
+    
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>iOS App 发布准备</h1>
+            
+            <h2 class="subheading">本文简要介绍发布 iOS App 需要做的准备工作</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">beeuc</a>
+              on May 11, 2019 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <h1 id="ios-app-发布准备">iOS App 发布准备</h1>
+
+<p>本文简要介绍发布 iOS App 需要做的准备工作</p>
+
+<h2 id="申请-apple-开发者账号">申请 Apple 开发者账号</h2>
+
+<p>如果 App 需要在 App Store 上发布，那么建议申请 “以组织身份注册” 的类型。</p>
+
+<p>申请地址 <a href="https://developer.apple.com/programs/">https://developer.apple.com/programs/</a>，申请网站上有详细的流程介绍。</p>
+
+<p>开发者账号申请好之后，才可以进行后续步骤。</p>
+
+<h2 id="常用网站">常用网站</h2>
+
+<ul>
+  <li>Apple 开发者网站 - <a href="https://developer.apple.com">https://developer.apple.com</a>， 管理 App ID，签名证书，Provisioning Profile 等</li>
+  <li>App Store Connect 网站 - <a href="https://appstoreconnect.apple.com">https://appstoreconnect.apple.com</a>，管理 App，Test Flight 测试版本，用户等</li>
+  <li>Apple ID 管理网站 - <a href="https://appleid.apple.com/cn">https://appleid.apple.com/cn</a>，管理开发者的 Apple ID，需要在里边创建 App specific password，在上传 ipa 文件的命令中需要使用</li>
+</ul>
+
+<h2 id="创建-app-id">创建 App ID</h2>
+
+<p>在 <a href="https://developer.apple.com">https://developer.apple.com</a> 网站为 App 创建一个 App ID，创建 App ID 是为了创建 Bundle ID （PRODUCT_BUNDLE_IDENTIFIER）。如果在 Xcode 工程中使用 xcconfig，则 release build 的 xcconfig 中可以设置 <code class="highlighter-rouge">PRODUCT_BUNDLE_IDENTIFIER = "创建 App ID 时指定的 Bundle ID"。</code></p>
+
+<h2 id="创建-ios-distribution-证书">创建 iOS Distribution 证书</h2>
+
+<p>这个证书用于 Xcode 编译过程中为生成的 ipa 文件签名，如果还没有创建该证书，则可以使用 Xcode 创建该证书。创建的方法是进入到 Xcode &gt; Preferences &gt; Accounts &gt; Manage Certificates…, 点 + 号，选择 iOS Distribution。</p>
+
+<p>创建出来后，可以在主机的 Keychain Access 应用中将该证书导出为一个 .p12 文件备用，一般需要将这个证书再安装到编译服务器上去。</p>
+
+<h2 id="创建-ios-provisioning-profiles-distribution">创建 iOS Provisioning Profiles (Distribution)</h2>
+
+<p>在 <a href="https://developer.apple.com">https://developer.apple.com</a> 网站为 App 创建一个 iOS Provisioning Profiles (Distribution)，这个文件也是在 Xcode 编译时使用。创建时，需要选择已经创建好的 App ID，以及 iOS Distribution 证书。创建好的 iOS Provisioning Profiles (Distribution) 文件可以下载下来，安装到编译服务器上。</p>
+
+<h2 id="配置-release-xcconfig-文件">配置 release xcconfig 文件</h2>
+
+<p>建议在工程中使用 release xcconfig 文件，可以在该文件中配置好以下几项配置。在工程的 Build Settings 中将相应的属性设置为对应的参数。如将 Provisioning Profile &gt; Release 设置为 <code class="highlighter-rouge">${PROVISIONING_PROFILE_SPECIFIER}</code>，将 Packaging &gt; Product Bundle Identifier &gt; Release 设置为  <code class="highlighter-rouge">${PRODUCT_BUNDLE_IDENTIFIER}</code> 以此类推。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PRODUCT_BUNDLE_IDENTIFIER <span class="o">=</span> 创建 App ID 时指定的 Bundle ID
+PRODUCT_NAME <span class="o">=</span> 应用名字
+DEVELOPMENT_TEAM <span class="o">=</span> 开发者 Team ID 号码，在 developer.apple.com 查看账号信息可以查到  
+CODE_SIGN_IDENTITY <span class="o">=</span> 签名证书 ID，查看签名证书属性可以查到 
+PROVISIONING_PROFILE_SPECIFIER <span class="o">=</span> iOS Provisioning Profiles <span class="o">(</span>Distribution<span class="o">)</span> 的名字
+</code></pre></div></div>
+
+<h2 id="在-app-store-connect-创建应用">在 App Store Connect 创建应用</h2>
+
+<p>在 App Store Connect 网站中创建一个新的 iOS App，创建应用时选择之前创建的 Bundle ID。只有创建 App 后才可以上传改应用的 ipa 文件。</p>
+
+<h2 id="编译-release-版本应用-ipa-文件并将其上传到-app-store-connect">编译 Release 版本应用 ipa 文件并将其上传到 App Store Connect</h2>
+
+<p>建议在编译服务器通过命令行方式编译用于发布的 ipa 文件，然后通过命令行进行上传。可以使用 Jenkins 等 CI/CD 工具，将这一过程自动化。编译命令和上传命令示例如下</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xcodebuild <span class="nt">-target</span> <span class="k">${</span><span class="nv">TARGET</span><span class="k">}</span> <span class="nt">-configuration</span> Release <span class="nt">-project</span> <span class="k">${</span><span class="nv">PROJECT_FILE</span><span class="k">}</span>
+xcrun altool <span class="nt">--upload-app</span> <span class="nt">-f</span> ./release/<span class="k">${</span><span class="nv">RELEASE_IPA_FILE</span><span class="k">}</span> <span class="nt">-u</span> <span class="k">${</span><span class="nv">USER_APPLE_ID</span><span class="k">}</span> <span class="nt">-p</span> <span class="s2">"</span><span class="k">${</span><span class="nv">APP_SPECIFIC_PASSWORD</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>苹果现在要求 altool 命令中不能再使用用户的登录密码，而需要使用 App Specific Password，这个密码需要在 Apple ID 管理网站中创建</p>
+</blockquote>
+
+<h2 id="通过-test-flight-安装-app-测试">通过 Test Flight 安装 App 测试</h2>
+
+<p>Test Flight 是苹果推荐的 App 发布前的测试和 Beta 手段， ipa 上传到 App Store Connect 后，测试人员可以通过 Test Flight 安装新上传的 App，进行必要的测试。有关 Test Flight 的使用方法可以参考 <a href="https://developer.apple.com/testflight/">https://developer.apple.com/testflight/</a></p>
+
+<h2 id="提交审核">提交审核</h2>
+
+<p>新版本应用通过测试后，可以将其提交审核。在 <a href="https://appstoreconnect.apple.com">https://appstoreconnect.apple.com</a> 网站上提供必要的信息，然后提交审核即可。苹果一般几天后开始审核，如果审核成功，则 App 可以发布到 App Store。如果审核失败，苹果会提供反馈信息，说明审核失败的原因，需要根据反馈进行必要的修改或者同审核人员进行必要的沟通。可以参考苹果文档 <a href="https://help.apple.com/app-store-connect/#/dev34e9bbb5a">https://help.apple.com/app-store-connect/#/dev34e9bbb5a</a> 查看更详细的说明。</p>
+
+<blockquote>
+  <p>苹果现在要求所有应用需要提供《隐私协议》链接，需要将准备好的《隐私协议》放到公司网站后，将地址链接填入 App 审核申请中对应的空格。</p>
+</blockquote>
+
+<blockquote>
+  <p>另外，有时苹果要求提供 App 使用的 Demo 视频，建议录制一个 Demo 视频，在申请表中提供视频的地址链接。</p>
+</blockquote>
+
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/develop/jekyll/2019/05/11/Fenced-Code-Block-Syntax-Highlight-with-Jekyll.html"
+            data-toggle="tooltip" data-placement="top" title="Fenced Code Block Syntax Highlight with Jekyll">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/beeuc-corp">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          <li class="list-inline-item">
+            <a href="mailto: info@beeuc.com">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-paper-plane fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; beeuc 2019</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script src="/develop/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/develop/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/develop/assets/vendor/startbootstrap-clean-blog/js/clean-blog.min.js"></script>
+
+<script src="/develop/assets/scripts.js"></script>
+
+
+
+
+  </body>
+
+</html>
